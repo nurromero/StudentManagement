@@ -1,6 +1,6 @@
 This project demonstrates database schema migrations for a simple Student Management System in .NET using Entity Framework Core.
 
-We chose to start with the EF/Code first approach first. With this, Entity Framework tracks model changes in the code, and generates migration files that evolve the datacase schema step by step.
+We chose to start with the EF/Code first approach. With this, Entity Framework tracks model changes in the code, and generates migration files that evolve the datacase schema step by step.
 
 We started with creating a new .NET console project,
 Then we installed the necessary EF Core packages via NuGet:
