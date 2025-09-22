@@ -23,8 +23,8 @@ Others (like renaming Grade to FinalGrade) are destructive, as EF replaces the c
 In this project it’s acceptable, since no real data exists yet.
 
 
-**State based approach:
-**
+**State based approach:**
+
 For the state-based approach, we created a set of versioned SQL scripts (V1__InitialSchema.sql, V2__AddMiddleName.sql, etc.).  
 Each script represents the full desired state of the schema at that version.  
 This allows any database to be brought in sync by applying the script, regardless of its current state.  
