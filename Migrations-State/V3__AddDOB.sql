@@ -1,0 +1,2 @@
+﻿ALTER TABLE Student
+ADD DateOfBirth DATE NULL;
