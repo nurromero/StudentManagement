@@ -1,0 +1,24 @@
+﻿-- V1__InitialSchema.sql
+
+CREATE TABLE Student (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    FirstName NVARCHAR(100) NOT NULL,
+    LastName NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(255) NOT NULL,
+    EnrollmentDate DATETIME2 NOT NULL
+);
+
+CREATE TABLE Course (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Title NVARCHAR(200) NOT NULL,
+    Credits INT NOT NULL
+);
+
+CREATE TABLE Enrollment (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    StudentId INT NOT NULL,
+    CourseId INT NOT NULL,
+    Grade NVARCHAR(50) NOT NULL,
+    FOREIGN KEY (StudentId) REFERENCES Student(Id) ON DELETE CASCADE,
+    FOREIGN KEY (CourseId) REFERENCES Course(Id) ON DELETE CASCADE
+);
