@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentManagement.Models;
 
@@ -11,9 +12,11 @@ using StudentManagement.Models;
 namespace StudentManagement.Migrations
 {
     [DbContext(typeof(StudentContext))]
-    partial class StudentContextModelSnapshot : ModelSnapshot
+    [Migration("20250919143456_AddMiddleName")]
+    partial class AddMiddleName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,46 +36,13 @@ namespace StudentManagement.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
-                    b.Property<int>("InstructorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InstructorId");
-
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("StudentManagement.Models.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Budget")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("DepartmentHeadId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentHeadId");
-
-                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("StudentManagement.Models.Enrollment", b =>
@@ -86,7 +56,7 @@ namespace StudentManagement.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("FinalGrade")
+                    b.Property<string>("Grade")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -102,34 +72,6 @@ namespace StudentManagement.Migrations
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("StudentManagement.Models.Instructor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Instructors");
-                });
-
             modelBuilder.Entity("StudentManagement.Models.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -137,9 +79,6 @@ namespace StudentManagement.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -157,37 +96,11 @@ namespace StudentManagement.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MiddleName")
-<<<<<<< HEAD
-                        .IsRequired()
-=======
->>>>>>> feat/add-middlename-ef
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("StudentManagement.Models.Course", b =>
-                {
-                    b.HasOne("StudentManagement.Models.Instructor", "Instructor")
-                        .WithMany("Courses")
-                        .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Instructor");
-                });
-
-            modelBuilder.Entity("StudentManagement.Models.Department", b =>
-                {
-                    b.HasOne("StudentManagement.Models.Instructor", "DepartmentHead")
-                        .WithMany()
-                        .HasForeignKey("DepartmentHeadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DepartmentHead");
                 });
 
             modelBuilder.Entity("StudentManagement.Models.Enrollment", b =>
@@ -212,11 +125,6 @@ namespace StudentManagement.Migrations
             modelBuilder.Entity("StudentManagement.Models.Course", b =>
                 {
                     b.Navigation("Enrollments");
-                });
-
-            modelBuilder.Entity("StudentManagement.Models.Instructor", b =>
-                {
-                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("StudentManagement.Models.Student", b =>
