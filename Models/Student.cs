@@ -16,6 +16,8 @@ namespace StudentManagement.Models
 
         public DateTime DateOfBirth { get; set; }
 
+        public string MiddleName { get; set; }
+
         // Navigation property
         public ICollection<Enrollment> Enrollments { get; set; }
     }
