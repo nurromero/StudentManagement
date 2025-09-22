@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.Models
 {
-    public class Student
+    public class Instructor
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public DateTime EnrollmentDate { get; set; }
-
-        public DateTime DateOfBirth { get; set; }
-
-        public string MiddleName { get; set; }
+        public DateTime HireDate { get; set; }
 
         // Navigation property
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Course> Courses { get; set; }
+
     }
 }
